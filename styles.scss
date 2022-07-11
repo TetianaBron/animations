@@ -1,0 +1,127 @@
+@keyframes increase {
+    0% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes color {
+    0% {
+        color: red;
+    }
+    20% {
+        color: orange;
+    }
+    35% {
+        color: yellow;
+    }
+    50% {
+        color: green;
+    }
+    65% {
+        color: rgb(0, 238, 255);
+    }
+    80% {
+        color: blue;
+    }
+    100% {
+        color: purple;
+    }
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.flowers {
+    &--row {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        border-bottom: 1px solid grey;
+    }
+    &__wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 220px;
+        padding: 30px;
+        cursor: pointer;
+    }
+    &__wrapper--increase {
+        &:hover {
+            &:nth-child(1) {
+                animation: increase 3s ease infinite;
+                // full record
+                // animation-name: increase;
+                // animation-duration: 3s;
+                // animation-timing-function: ease;
+                // animation-iteration-count: infinite;
+            }
+            &:nth-child(2) {
+                animation: increase 3s linear infinite;
+            }
+            &:nth-of-type(3) {
+                animation: increase 3s ease-in 3;
+            }
+            &:nth-of-type(4) {
+                animation: increase 5s ease-in-out 1;
+            }
+        }
+    }
+    &__wrapper--spin {
+        &:hover {
+            animation: spin 2s ease infinite;
+            &:nth-child(2) {
+                animation-direction: reverse;
+            }
+            &:nth-child(3) {
+                animation-direction: alternate;
+            }
+            &:nth-child(4) {
+                animation-direction: alternate-reverse;
+            }
+        }
+    }
+    &__wrapper--color {
+        animation: color 5s linear 1;
+        animation-delay: 3s;
+        &:hover {
+            animation-play-state: paused;
+        }
+        &:nth-child(2) {
+            animation-fill-mode: forwards;
+        }
+        &:nth-of-type(3) {
+            animation-fill-mode: backwards;
+        }
+        &:nth-of-type(4) {
+            animation-fill-mode: both; 
+        }
+    }
+    &__item {
+        min-height: 120px;
+        text-align: center;
+    }
+}
+
+// short record
+// animation: [name] [duration] [timing-function] [delay] [iteration-count] [direction] [fill-mode] [play-state]
